@@ -11,13 +11,12 @@ const PostCreate = ({ getPosts }) => {
         setLoading(true);
         try {
             const data = await apiService.createPost(formData);
-            message.success(data.message);
             form.resetFields();
             setLoading(false);
             getPosts();
         } catch (error) {
             setLoading(false);
-            message.error(error.data.message || 'Something went wrong!');
+            message.error('Something went wrong!');
         }
     };
 

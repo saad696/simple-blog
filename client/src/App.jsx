@@ -12,8 +12,7 @@ const App = () => {
             console.log(data)
             setPosts([...data]);
         } catch (error) {
-            console.log(error)
-            message.error(error || 'Something went wrong');
+            message.error('Something went wrong');
         }
     };
 

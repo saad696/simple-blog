@@ -26,11 +26,8 @@ app.post('/posts/:id/comments', (req, res) => {
     const { comment } = req.body.data;
 
     const comments = commentByPostId[id] || [];
-
     comments.push({ id: commentId, comment });
-
     commentByPostId[id] = comments;
-
     res.status(201).json({ message: 'Comment added succesfully' });
 });
 
