@@ -8,7 +8,7 @@ export const apiService = {
     return data;
   },
   getPosts: async () => {
-    const { data } = await axios.get("http://localhost:4000");
+    const { data } = await axios.get("http://localhost:4002/posts");
     return data;
   },
   addComment: async (body, postId) => {
@@ -20,10 +20,10 @@ export const apiService = {
     );
     return data;
   },
-  getComments: async (postId) => {
-    const { data } = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
-    return data;
-  },
+  // getComments: async (postId) => {
+  //   const { data } = await axios.get(
+  //     `http://localhost:4001/posts/${postId}/comments`
+  //   );
+  //   return data;
+  // },
 };
