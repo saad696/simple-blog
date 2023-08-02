@@ -27,7 +27,7 @@ app.post("/posts/:id/comments", async (req, res) => {
   const { comment } = req.body.data;
 
   const comments = commentByPostId[id] || [];
-  comments.push({ id: commentId, comment });
+  comments.push({ id: commentId, comment, status: "Pending" });
   commentByPostId[id] = comments;
 
   /* emitting event */
@@ -37,17 +37,35 @@ app.post("/posts/:id/comments", async (req, res) => {
       id: commentId,
       comment,
       postId: id,
+      status: "Pending",
     },
   });
 
-  res.status(201).json({ message: "Comment added succesfully" })
+  res.status(201).json({ message: "Comment added succesfully" });
 });
 
 app.post("/events", (req, res) => {
-    console.log("Event Recieved", req.body.type);
-  
-    res.status(200).json({ message: "Event recieved" });
-  });
+  console.log("Event Recieved", req.body.type);
+  const { type, data } = req.body;
+
+  if (type === "CommentModerated") {
+    const { postId, id, status, comment } = data;
+
+    commentByPostId[postId].find((comment) => comment.id === id).status =
+      status;
+
+    axios.post("http://localhost:4005/events", {
+      type: "CommentUpdated",
+      data: {
+        id,
+        postId,
+        status,
+        comment,
+      },
+    });
+  }
+  res.status(200).json({ message: "Event recieved" });
+});
 
 app.listen(4001, () => {
   console.log("Server started on port:4001");
