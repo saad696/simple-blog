@@ -30,5 +30,5 @@ app.post("/events", async (req, res) => {
 });
 
 app.listen(4003, () => {
-  console.log("Event Bus running on port:4003");
+  console.log("Comment Moderation service running on port:4003");
 });
