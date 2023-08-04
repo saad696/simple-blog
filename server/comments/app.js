@@ -49,7 +49,7 @@ app.post("/events", (req, res) => {
   const { type, data } = req.body;
 
   if (type === "CommentModerated") {
-    const { postId, id, status, comment } = data;
+    const { postId, id, status, comment } = data
 
     commentByPostId[postId].find((comment) => comment.id === id).status =
       status;

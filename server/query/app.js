@@ -54,7 +54,9 @@ app.listen('4002', async () => {
 
     const { data: apiData } = await axios.get('http://localhost:4005/get-events');
 
-    for (let { type, data: eventData } in apiData.events) {
+    console.log(apiData)
+
+    for (let { type, data: eventData } of apiData.data) {
         console.log('Processing event: ', type);
         handleEvents(type, eventData);
     }

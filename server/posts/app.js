@@ -47,7 +47,7 @@ app.post("/posts", async (req, res) => {
     },
   })
 
-  res.status(201).json({ message: "post created succesfully" });
+  res.status(201).json({ message: "post created succesfully" })
 });
 
 app.post("/events", (req, res) => {

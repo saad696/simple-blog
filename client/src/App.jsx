@@ -12,7 +12,7 @@ const App = () => {
       console.log(data);
       setPosts(Object.values(data).map((post) => post));
     } catch (error) {
-      message.error("Something went wrong");
+      message.error("Something went wrong, While fetching posts!");
     }
   };
 
