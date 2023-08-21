@@ -41,8 +41,6 @@ app.post("/events", async (req, res, next) => {
     }
   });
 
-  console.log(events)
-
   if (errors.length > 0) {
     console.error("Errors occurred while sending events to services:", errors);
   }
